@@ -10,49 +10,46 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <list>
+#include <sstream>
 
 using namespace std;
 
+class BigInteger {
+private:
+    vector<int> numeros;
+    bool signo; //true = positivo | false = negativo
+public:
+    /* Operaciones Constructoras */
+    BigInteger();
+    BigInteger(const string&);
+    BigInteger(const BigInteger&);
 
-class Nodo{
-    public:
-        int dato;
-        Nodo* ant;
-        Nodo* sig;
-};
-
-class BigInteger{
-    private:
-        Nodo* act;
-    public:
-
-    /*Operaciones Constructoras*/
-    BigInteger(string &cadena);
-    BigInteger(BigInteger& B);
-
-    /*Operaciones Matematicas*/
-    void add(BigInteger& n);
+    /* Operaciones Matematicas */
+    void add(BigInteger& N);
     void product(BigInteger& n);
-    void subtract(BigInteger& n);
+    void substract(BigInteger& n);
     void quotient(BigInteger& n);
     void remainder(BigInteger& n);
-    void pow(BigInteger& e);
+    void pow(int& e);
 
-    string toString() const;
+    string toString();
 
-    /*Sobrecarga de operadores*/
-    friend BigInteger operator+(const BigInteger& N1, const BigInteger& N2);
-    friend BigInteger operator-(const BigInteger& N1, const BigInteger& N2);
-    friend BigInteger operator/(const BigInteger& N1, const BigInteger& N2);
-    friend BigInteger operator*(const BigInteger& N1, const BigInteger& N2);
-    friend BigInteger operator%(const BigInteger& N1, const BigInteger& N2);
-    friend bool operator==(const BigInteger& N1, const BigInteger& N2);
-    friend bool operator<(const BigInteger& N1, const BigInteger& N2);
-    friend bool operator<=(const BigInteger& N1, const BigInteger& N2);
-
-    /*Operaciones Estaticas*/
-    static BigInteger sumarListaValores(const vector<BigInteger>& lista);
-    static BigInteger multiplicarListaValores(const vector<BigInteger>& lista);
+    /* Sobrecarga de operadores */
+    BigInteger operator+(BigInteger& N);
+    BigInteger operator-(BigInteger& N);
+    BigInteger operator/(BigInteger& N);
+    BigInteger operator*(BigInteger& N);
+    BigInteger operator%(BigInteger& N);
+    bool operator==(BigInteger& N);
+    bool operator<(BigInteger& N);
+    bool operator<=(BigInteger& N);
+    /*Operaciones Auxiliares*/
+    BigInteger abs();
+    int tam();
+    /* Operaciones estaticas */
+    static BigInteger sumarListaValores(list<BigInteger>& lista);
+    static BigInteger multiplicarListaValores(list<BigInteger>& lista);
 };
 
 #endif
